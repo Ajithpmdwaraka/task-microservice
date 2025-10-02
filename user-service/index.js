@@ -23,6 +23,19 @@ const userSchema = new mongoose.Schema({
 
 const User = mongoose.model('User', userSchema);
 
+app.post('/users', async(req, res) => {
+    const { name, email } = req.body;
+
+    try {
+        const user = new User({ name, email });
+        await user.save();
+        res.status(201).json(User);
+    } catch (error) {
+        console.log("Error Saving:", error);
+        res.status(500).json({ error: 'Failed to save user' });
+    }
+})
+
 
 app.get('/', (req, res) => {
     res.send('Hello World!')
