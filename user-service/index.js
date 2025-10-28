@@ -31,7 +31,7 @@ app.post('/users', async(req, res) => {
         await user.save();
         res.status(201).json(User);
     } catch (error) {
-        console.log("Error Saving:", error);
+        console.log("Error Saving user:", error);
         res.status(500).json({ error: 'Unable to save user' });
     }
 })
